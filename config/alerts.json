@@ -1,0 +1,41 @@
+{
+  "_comment": "Email alerts. 'above' is inclusive, 'below' is exclusive; use both for a flow window. Recipients can be literal addresses, but in a public repo prefer \"$SECRET_NAME\" entries, which read a comma-separated list from a GitHub Actions secret. An alert emails once when its condition becomes true, not every hour it stays true.",
+  "subject_prefix": "[Bozeman Flows]",
+  "hysteresis_pct": 5,
+  "default_to": ["$ALERT_TO"],
+  "rules": [
+    {
+      "id": "gallatin-canyon-in",
+      "site": "06043500",
+      "above": 700,
+      "below": 1500,
+      "note": "Gallatin Canyon is in the medium sweet spot.",
+      "notify_on_clear": true
+    },
+    {
+      "id": "gallatin-canyon-big",
+      "site": "06043500",
+      "above": 3000,
+      "note": "Mad Mile is continuous Class IV. Experienced paddlers only."
+    },
+    {
+      "id": "beartrap-too-high",
+      "site": "06041000",
+      "above": 3200,
+      "note": "Bear Trap is above where many outfitters stop running it."
+    },
+    {
+      "id": "yankee-jim-running",
+      "site": "06191500",
+      "above": 2000,
+      "below": 10000,
+      "note": "Yankee Jim is in friendly Class III range."
+    },
+    {
+      "id": "stillwater-dropping-out",
+      "site": "06205000",
+      "below": 500,
+      "note": "Stillwater is getting too low to paddle."
+    }
+  ]
+}
