@@ -33,7 +33,7 @@ class TestConfig(unittest.TestCase):
         self.assertGreaterEqual(len(CFG.sites), 7)
 
     def test_classify_edges(self):
-        self.assertEqual(CFG.classify("06043500", 299)["level"], "too_low")
+        self.assertEqual(CFG.classify("06043500", 299)["level"], "very_low")
         self.assertEqual(CFG.classify("06043500", 300)["level"], "low")      # max is exclusive
         self.assertEqual(CFG.classify("06043500", 1000)["general"], "Medium")
         self.assertEqual(CFG.classify("06043500", 9000)["level"], "flood")
