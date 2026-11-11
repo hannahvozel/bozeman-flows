@@ -1,5 +1,15 @@
+#Python
 __pycache__/
 *.pyc
+
+#Virtual Envs
 .venv/
+
+#Secrets
 .env
+
+#Mac OS
 .DS_Store
+
+#Markdown
+.md

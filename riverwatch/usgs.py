@@ -1,4 +1,4 @@
-"""Minimal client for the modern USGS Water Data API (OGC API - Features).
+"""Minimal client for the modern USGS Water Data API.
 
 Docs: https://api.waterdata.usgs.gov/
 The legacy waterservices.usgs.gov API is being decommissioned in early 2027,
@@ -19,9 +19,9 @@ from typing import Any, Iterable, Iterator
 BASE_URL = os.environ.get("USGS_API_BASE", "https://api.waterdata.usgs.gov/ogcapi/v1")
 DISCHARGE = "00060"   # cubic feet per second
 GAGE_HEIGHT = "00065"  # feet
-USER_AGENT = "bozeman-flows/1.0 (+https://github.com)"
+USER_AGENT = "bozeman-flows/1.0 (+https://github.com/hannahvozel/bozeman-flows)"
 
-
+"""Create new class that inherits from RuntimeError."""
 class USGSError(RuntimeError):
     pass
 
@@ -47,6 +47,7 @@ def _parse_value(raw: Any) -> float | None:
     return None if value < 0 else value
 
 
+"""Easy to integrate API key if needed in the future, don't have to now."""
 class USGSClient:
     def __init__(self, api_key: str | None = None, base_url: str = BASE_URL,
                  timeout: float = 30.0, retries: int = 3):

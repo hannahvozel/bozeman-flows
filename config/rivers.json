@@ -1,7 +1,7 @@
 {
-  "_comment": "Single source of truth for the site AND the Python alert job. Flow bands are starting estimates for kayakers; tune them to your crew's experience. Each band covers flows from the previous band's max up to (not including) its own max. The last band has max = null.",
+  "_comment": "Single source of truth for the site AND the Python alert job. Flow bands are starting estimates for kayakers. Each band covers flows from the previous band's max up to (not including) its own max. The last band has max = null.",
   "levels": {
-    "too_low":   { "label": "Too Low",   "general": "Low" },
+    "very_low":   { "label": "Very Low",   "general": "Low" },
     "low":       { "label": "Low",       "general": "Low" },
     "medium":    { "label": "Medium",    "general": "Medium" },
     "high":      { "label": "High",      "general": "High" },
@@ -12,32 +12,32 @@
     {
       "id": "gallatin",
       "name": "Gallatin River",
-      "blurb": "Bozeman's backyard run. Most of the whitewater sits in Gallatin Canyon between Deer Creek and Storm Castle, with the Mad Mile and House Rock as the main event.",
+      "blurb": "Bozeman's backyard!",
       "sites": [
         {
           "usgs": "06043500",
           "name": "near Gallatin Gateway",
-          "run": "Gallatin Canyon: Greek Creek to Storm Castle (Mad Mile, House Rock)",
+          "run": "Gallatin Canyon: Lower",
           "bands": [
-            { "max": 300,  "level": "too_low",   "class": "II",     "note": "Scrapy and rocky; packrafts and creek boats only." },
-            { "max": 700,  "level": "low",       "class": "II+/III-", "note": "Technical, lots of small boofs and surf waves." },
-            { "max": 1500, "level": "medium",    "class": "III",    "note": "Sweet spot for most canyon paddlers." },
-            { "max": 3000, "level": "high",      "class": "III+/IV-", "note": "Pushy, holes get sticky, fewer eddies." },
-            { "max": 5000, "level": "very_high", "class": "IV",     "note": "Continuous Class IV through the Mad Mile." },
-            { "max": null, "level": "flood",     "class": "IV+/V",  "note": "Peak runoff. Cold, fast, full of wood. Experts only." }
+            { "max": 300,  "level": "very_low",   "class": "II",     "note": "Estimate only." },
+            { "max": 700,  "level": "low",       "class": "II+/III-", "note": "Estimate only." },
+            { "max": 1500, "level": "medium",    "class": "III",    "note": "Estimate only." },
+            { "max": 3000, "level": "high",      "class": "III+/IV-", "note": "Estimate only." },
+            { "max": 5000, "level": "very_high", "class": "IV",     "note": "Estimate only." },
+            { "max": null, "level": "flood",     "class": "IV+/V",  "note": "Estimate only." }
           ]
         },
         {
           "usgs": "06043120",
           "name": "above Deer Creek, near Big Sky",
-          "run": "Upper canyon: Big Sky to Deer Creek, top of the Gallatin Canyon whitewater",
+          "run": "Gallatin Canyon: Upper",
           "bands": [
-            { "max": 200,  "level": "too_low",   "class": "II",     "note": "Very low and boney." },
-            { "max": 450,  "level": "low",       "class": "II+",    "note": "Low but boatable." },
-            { "max": 1000, "level": "medium",    "class": "III-",   "note": "Good flows for the upper canyon." },
-            { "max": 2000, "level": "high",      "class": "III",    "note": "Fast with fewer eddies." },
-            { "max": 3500, "level": "very_high", "class": "III+/IV", "note": "Big runoff water upstream of the canyon." },
-            { "max": null, "level": "flood",     "class": "IV+",    "note": "Flood stage. Stay off unless you know it well." }
+            { "max": 200,  "level": "very_low",   "class": "II",     "note": "Estimate only." },
+            { "max": 450,  "level": "low",       "class": "II+",    "note": "Estimate only." },
+            { "max": 1000, "level": "medium",    "class": "III-",   "note": "Estimate only." },
+            { "max": 2000, "level": "high",      "class": "III",    "note": "Estimate only." },
+            { "max": 3500, "level": "very_high", "class": "III+/IV", "note": "Estimate only." },
+            { "max": null, "level": "flood",     "class": "IV+",    "note": "Estimate only." }
           ]
         }
       ]
@@ -45,19 +45,19 @@
     {
       "id": "madison",
       "name": "Madison River",
-      "blurb": "Bear Trap Canyon: a remote, dam-controlled wilderness run with warm water and the infamous Kitchen Sink. Flows can pulse quickly when the dam releases.",
+      "blurb": "Bear Trap",
       "sites": [
         {
           "usgs": "06041000",
           "name": "below Ennis Lake, near McAllister",
           "run": "Bear Trap Canyon: Madison Dam to Route 84 (Kitchen Sink)",
           "bands": [
-            { "max": 800,  "level": "too_low",   "class": "II/III", "note": "Upper section may be too low; Kitchen Sink still Class IV." },
-            { "max": 1500, "level": "low",       "class": "III",    "note": "Technical II-III; Kitchen Sink IV." },
-            { "max": 2500, "level": "medium",    "class": "III",    "note": "Classic Bear Trap flows. Kitchen Sink IV." },
-            { "max": 3200, "level": "high",      "class": "III+",   "note": "Pushy. Kitchen Sink IV+." },
-            { "max": 5000, "level": "very_high", "class": "IV",     "note": "Some outfitters stop running above ~3,200 cfs. Kitchen Sink can be Class V." },
-            { "max": null, "level": "flood",     "class": "IV+/V",  "note": "Big, remote water. Help is hours away." }
+            { "max": 800,  "level": "very_low",   "class": "II/III", "note": "Estimate only." },
+            { "max": 1500, "level": "low",       "class": "III",    "note": "Estimate only." },
+            { "max": 2500, "level": "medium",    "class": "III",    "note": "Estimate only." },
+            { "max": 3200, "level": "high",      "class": "III+",   "note": "Estimate only." },
+            { "max": 5000, "level": "very_high", "class": "IV",     "note": "Estimate only." },
+            { "max": null, "level": "flood",     "class": "IV+/V",  "note": "Estimate only." }
           ]
         }
       ]
@@ -65,19 +65,19 @@
     {
       "id": "yellowstone",
       "name": "Yellowstone River",
-      "blurb": "Big-volume water. Yankee Jim Canyon packs Boat Eater, Big Rock and Boxcar into a few miles; downstream at Livingston it's a classic float.",
+      "blurb": "Big river.",
       "sites": [
         {
           "usgs": "06191500",
           "name": "at Corwin Springs",
           "run": "Yankee Jim Canyon: Yankee Jim to Carbella (Boat Eater, Big Rock, Boxcar)",
           "bands": [
-            { "max": 2000,  "level": "too_low",   "class": "II+",   "note": "Late-season low water; rocks exposed." },
-            { "max": 5000,  "level": "low",       "class": "III-",  "note": "Friendly Class III, good for newer big-water boaters." },
-            { "max": 10000, "level": "medium",    "class": "III",   "note": "Wave trains build; Boxcar gets bigger." },
-            { "max": 15000, "level": "high",      "class": "III+/IV", "note": "Big water with Class IV character." },
-            { "max": 30000, "level": "very_high", "class": "IV",    "note": "Think twice above ~15,000 cfs." },
-            { "max": null,  "level": "flood",     "class": "IV+",   "note": "Access may close around 30,000 cfs." }
+            { "max": 2000,  "level": "very_low",   "class": "II+",   "note": "Estimate only." },
+            { "max": 5000,  "level": "low",       "class": "III-",  "note": "Estimate only." },
+            { "max": 10000, "level": "medium",    "class": "III",   "note": "Estimate only." },
+            { "max": 15000, "level": "high",      "class": "III+/IV", "note": "Estimate only." },
+            { "max": 30000, "level": "very_high", "class": "IV",    "note": "Estimate only." },
+            { "max": null,  "level": "flood",     "class": "IV+",   "note": "Estimate only." }
           ]
         },
         {
@@ -85,12 +85,12 @@
           "name": "near Livingston",
           "run": "Paradise Valley and Livingston town stretch (Class I-II float)",
           "bands": [
-            { "max": 1500,  "level": "too_low",   "class": "I",    "note": "Very low; drag spots on side channels." },
-            { "max": 4000,  "level": "low",       "class": "I",    "note": "Easy, mellow float." },
-            { "max": 10000, "level": "medium",    "class": "I-II", "note": "Good float flows." },
-            { "max": 18000, "level": "high",      "class": "II",   "note": "Fast, cold and wide. Watch for bridge piers and wood." },
-            { "max": 28000, "level": "very_high", "class": "II+",  "note": "Powerful eddy lines, few safe eddies." },
-            { "max": null,  "level": "flood",     "class": "III",  "note": "Flood stage. Not a float trip." }
+            { "max": 1500,  "level": "very_low",   "class": "I",    "note": "Estimate only." },
+            { "max": 4000,  "level": "low",       "class": "I",    "note": "Estimate only." },
+            { "max": 10000, "level": "medium",    "class": "I-II", "note": "Estimate only." },
+            { "max": 18000, "level": "high",      "class": "II",   "note": "Estimate only." },
+            { "max": 28000, "level": "very_high", "class": "II+",  "note": "Estimate only." },
+            { "max": null,  "level": "flood",     "class": "III",  "note": "Estimate only." }
           ]
         }
       ]
@@ -98,19 +98,19 @@
     {
       "id": "stillwater",
       "name": "Stillwater River",
-      "blurb": "Beartooth snowmelt dropping out of the mountains toward Absarokee, with lively Class II-III water when it's running.",
+      "blurb": "Beartooth snowmelt.",
       "sites": [
         {
           "usgs": "06205000",
           "name": "near Absarokee",
           "run": "Lower Stillwater: Beehive to Absarokee",
           "bands": [
-            { "max": 500,  "level": "too_low",   "class": "II-",  "note": "Rocky and slow." },
-            { "max": 1000, "level": "low",       "class": "II",   "note": "Technical, good for learning." },
-            { "max": 2500, "level": "medium",    "class": "II+/III", "note": "Fun, splashy runoff flows." },
-            { "max": 4500, "level": "high",      "class": "III",  "note": "Pushy and fast." },
-            { "max": 7000, "level": "very_high", "class": "III+/IV", "note": "Big runoff water; holes form." },
-            { "max": null, "level": "flood",     "class": "IV",   "note": "Flooding. Stay off." }
+            { "max": 500,  "level": "very_low",   "class": "II-",  "note": "Estimate only." },
+            { "max": 1000, "level": "low",       "class": "II",   "note": "Estimate only." },
+            { "max": 2500, "level": "medium",    "class": "II+/III", "note": "Estimate only." },
+            { "max": 4500, "level": "high",      "class": "III",  "note": "Estimate only." },
+            { "max": 7000, "level": "very_high", "class": "III+/IV", "note": "Estimate only." },
+            { "max": null, "level": "flood",     "class": "IV",   "note": "Estimate only." }
           ]
         }
       ]
@@ -118,19 +118,19 @@
     {
       "id": "boulder",
       "name": "Boulder River",
-      "blurb": "Steep, fast runoff run south of Big Timber with long rapids, wood hazards and a notoriously low bridge at higher flows.",
+      "blurb": "Runoff South of Big Timber.",
       "sites": [
         {
           "usgs": "06200000",
           "name": "at Big Timber",
           "run": "Speculator Creek to Chippy Park (Class III-IV)",
           "bands": [
-            { "max": 1500, "level": "too_low",   "class": "II+",  "note": "Gauge is far downstream; upper runs likely too low." },
-            { "max": 3000, "level": "low",       "class": "III",  "note": "Lower end of the runnable window." },
-            { "max": 4500, "level": "medium",    "class": "III+", "note": "Fast with long rapids. Scout for wood." },
-            { "max": 5500, "level": "high",      "class": "IV-",  "note": "Few eddies, long swims. Low-bridge hazard for rafts above ~5,000 cfs." },
-            { "max": 7000, "level": "very_high", "class": "IV",   "note": "Kayaks only; may need to roll under the low bridge." },
-            { "max": null, "level": "flood",     "class": "IV+",  "note": "Flood flows. Stay off." }
+            { "max": 1500, "level": "very_low",   "class": "II+",  "note": "Estimate only." },
+            { "max": 3000, "level": "low",       "class": "III",  "note": "Estimate only." },
+            { "max": 4500, "level": "medium",    "class": "III+", "note": "Estimate only." },
+            { "max": 5500, "level": "high",      "class": "IV-",  "note": "Estimate only." },
+            { "max": 7000, "level": "very_high", "class": "IV",   "note": "Estimate only." },
+            { "max": null, "level": "flood",     "class": "IV+",  "note": "Estimate only." }
           ]
         }
       ]
