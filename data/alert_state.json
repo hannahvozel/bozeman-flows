@@ -17,12 +17,12 @@
     },
     "stillwater-dropping-out": {
       "active": true,
-      "last_cfs": 393.0,
+      "last_cfs": 404.0,
       "since": "2026-11-11T14:26:12+00:00"
     },
     "yankee-jim-running": {
       "active": false,
-      "last_cfs": 1020.0,
+      "last_cfs": 1010.0,
       "since": "2026-11-11T14:26:12+00:00"
     }
   }
