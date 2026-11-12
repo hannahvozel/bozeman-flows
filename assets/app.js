@@ -19,6 +19,7 @@
     selected: [],
     latest: {},         // usgs -> {cfs, gage_ft, time, approval}
     series: {},         // usgs -> [[ms, cfs], ...]
+    temp: {},           // usgs -> [[ms, degC], ...]
     source: null,       // "live" | "snapshot"
     snapshot: null,
     charts: new Map(),
@@ -62,39 +63,51 @@
     return Number.isFinite(v) && v >= 0 ? v : null; // negative sentinels (-999999) = no data
   };
   const siteOf = (feat) => (feat.properties.monitoring_location_id || "").replace(/^USGS-/, "");
+  
+  // Helpers to get water temp data
+  // Water temperature (USGS parameter 00010, degrees C). Not every gauge measures it.
+  const WATER_TEMP = "00010";
+  const tempNum = (raw) => {
+    const v = parseFloat(raw);
+    return Number.isFinite(v) && v > -5 && v < 45 ? v : null; // drops sentinels like -999999
+  };
+  const toF = (c) => c * 9 / 5 + 32;
+  const fmtTemp = (c) => (c == null ? "–" : `${Math.round(toF(c))}°F`);
 
   async function fetchLiveLatest(ids) {
     const feats = await fetchItems("latest-continuous", {
       monitoring_location_id: ids.map((i) => `USGS-${i}`).join(","),
-      parameter_code: "00060,00065",
+      parameter_code: "00060,00065,00010",
       limit: "1000",
     });
     const out = {};
     for (const f of feats) {
       const p = f.properties, id = siteOf(f);
-      const rec = (out[id] ||= { cfs: null, gage_ft: null, time: null, approval: null });
+      const rec = (out[id] ||= { cfs: null, gage_ft: null, temp_c: null, time: null, approval: null });
       const t = Date.parse(p.time);
       if (p.parameter_code === "00060" && (!rec.time || t > Date.parse(rec.time))) {
         Object.assign(rec, { cfs: num(p.value), time: p.time, approval: p.approval_status });
       } else if (p.parameter_code === "00065") {
         rec.gage_ft = num(p.value);
+      } else if (p.parameter_code === WATER_TEMP) {
+        rec.temp_c = tempNum(p.value);
       }
     }
     if (!Object.values(out).some((r) => r.cfs != null)) throw new Error("no discharge readings returned");
     return out;
   }
 
-  async function fetchLiveSeries(ids) {
+    async function fetchLiveSeries(ids, code = "00060", parse = num) {
     const feats = await fetchItems("continuous", {
       monitoring_location_id: ids.map((i) => `USGS-${i}`).join(","),
-      parameter_code: "00060",
+      parameter_code: code,
       time: "P7D",
       properties: "monitoring_location_id,time,value",
       limit: "10000",
     });
     const out = Object.fromEntries(ids.map((i) => [i, []]));
     for (const f of feats) {
-      const v = num(f.properties.value);
+      const v = parse(f.properties.value);
       if (v != null) (out[siteOf(f)] ||= []).push([Date.parse(f.properties.time), v]);
     }
     for (const pts of Object.values(out)) pts.sort((a, b) => a[0] - b[0]);
@@ -109,12 +122,12 @@
   function useSnapshotLatest(snap) {
     state.latest = {};
     for (const [id, s] of Object.entries(snap.sites || {})) {
-      state.latest[id] = { cfs: s.cfs, gage_ft: s.gage_ft, time: s.time, approval: s.approval };
+      state.latest[id] = { cfs: s.cfs, gage_ft: s.gage_ft, temp_c: s.temp_c ?? null, time: s.time, approval: s.approval };
     }
   }
 
-  function snapshotSeries(snap, id) {
-    return ((snap.sites || {})[id]?.series || []).map(([t, v]) => [Date.parse(t), v]);
+  function snapshotSeries(snap, id, key = "series") {
+    return ((snap.sites || {})[id]?.[key] || []).map(([t, v]) => [Date.parse(t), v]);
   }
 
   /** Make sure 7-day series exist for the selected rivers' gauges. */
@@ -123,7 +136,12 @@
     if (!needed.length) return;
     if (state.source === "live") {
       try {
-        Object.assign(state.series, await fetchLiveSeries(needed));
+        const [flow, temp] = await Promise.all([
+          fetchLiveSeries(needed),
+          fetchLiveSeries(needed, WATER_TEMP, tempNum).catch(() => ({})), // temperature is a bonus: never block the flow chart
+        ]);
+        Object.assign(state.series, flow);
+        for (const id of needed) state.temps[id] = temp[id] || [];
         return;
       } catch (err) {
         console.warn("Live history failed, trying snapshot:", err);
@@ -131,17 +149,23 @@
     }
     try {
       const snap = await loadSnapshot();
-      for (const id of needed) state.series[id] = snapshotSeries(snap, id);
+      for (const id of needed) {
+        state.series[id] = snapshotSeries(snap, id);
+        state.temps[id] = snapshotSeries(snap, id, "temp_series");
+      }
     } catch {
-      for (const id of needed) state.series[id] = [];
+      for (const id of needed) {
+        state.series[id] = [];
+        state.temps[id] = [];
+      }
     }
-  }
 
   async function refresh() {
     const btn = $("#refresh");
     btn.disabled = true;
     setStatus("Checking the gauges…");
     state.series = {};
+    state.temps = {};
     state.snapshot = null;
     const ids = Object.keys(state.sites);
     try {
@@ -342,6 +366,7 @@
     $(".site-run", card).textContent = site.run;
     $(".cfs-num", card).textContent = fmtCfs(r.cfs);
     $(".stage", card).textContent = r.gage_ft == null ? "–" : `${r.gage_ft.toFixed(2)} ft`;
+    $(".temp", card).textContent = fmtTemp(r.temp_c);
     const badge = $(".badge", card);
     if (c) {
       badge.textContent = c.label;
@@ -398,7 +423,7 @@
     }
     msg.textContent = "";
     const box = $(".chart-box", card);
-    const draw = () => renderChart(box, site, pts);
+    const draw = () => renderChart(box, site, pts, state.temps[site.usgs] || []);
     draw();
     const ro = new ResizeObserver(() => draw());
     ro.observe(box);
@@ -419,12 +444,21 @@
     return [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= raw);
   }
 
-  function renderChart(box, site, pts) {
+    /** The point in a time-sorted [[ms, value], ...] list closest to time t (binary search). */
+  function nearest(points, t) {
+    let lo = 0, hi = points.length - 1;
+    while (hi - lo > 1) { const mid = (lo + hi) >> 1; (points[mid][0] < t ? (lo = mid) : (hi = mid)); }
+    return Math.abs(points[lo][0] - t) < Math.abs(points[hi][0] - t) ? points[lo] : points[hi];
+  }
+
+  function renderChart(box, site, pts, temps=[]) {
     const host = $(".chart", box);
     const W = Math.max(240, box.clientWidth), H = box.clientHeight || 170;
     if (host.dataset.w === String(W) && host.firstChild) return; // no size change
     host.dataset.w = String(W);
-    const m = { l: 46, r: 10, t: 8, b: 22 };
+          // only temperature readings inside the flow chart's time window
+    const tw = temps.filter(([t]) => t >= pts[0][0] && t <= pts[pts.length - 1][0]);
+    const m = { l: 46, r: tw.length > 1 ? 44 : 10, t: 8, b: 22 }; // extra right margin for the °F axis
     const iw = W - m.l - m.r, ih = H - m.t - m.b;
 
     const vals = pts.map((p) => p[1]);
@@ -480,6 +514,23 @@
     const [lt, lv] = pts[pts.length - 1];
     svg.append(svgEl("circle", { cx: X(lt), cy: Y(lv), r: 3.5, fill: cssVar("--river") }));
 
+    // water temperature: dashed line on its own right-hand °F axis
+    if (tw.length > 1) {
+      const tempColor = cssVar("--temp");
+      const fv = tw.map(([, c]) => toF(c));
+      const fstep = niceStep(Math.max(Math.max(...fv) - Math.min(...fv), 4) + 4, 3);
+      const f0 = Math.floor((Math.min(...fv) - 2) / fstep) * fstep;
+      const f1 = Math.ceil((Math.max(...fv) + 2) / fstep) * fstep;
+      const FY = (f) => m.t + ih - ((f - f0) / (f1 - f0)) * ih;
+      for (let f = f0; f <= f1 + 1e-9; f += fstep) {
+        const label = svgEl("text", { x: m.l + iw + 5, y: FY(f) + 4, fill: tempColor, "font-size": 11 });
+        label.textContent = `${+f.toFixed(1)}°F`;
+        svg.append(label);
+      }
+      const td = tw.map(([t, c], i) => `${i ? "L" : "M"}${X(t).toFixed(1)},${FY(toF(c)).toFixed(1)}`).join("");
+      svg.append(svgEl("path", { d: td, fill: "none", stroke: tempColor, "stroke-width": 1.8, "stroke-dasharray": "5 3", "stroke-linejoin": "round" }));
+    }
+
     // hover readout
     const cursor = svgEl("g", { visibility: "hidden" });
     const vline = svgEl("line", { y1: m.t, y2: m.t + ih, stroke: cssVar("--ink"), "stroke-width": 1 });
@@ -499,9 +550,11 @@
       dot.setAttribute("cx", px); dot.setAttribute("cy", py);
       cursor.setAttribute("visibility", "visible");
       const c = classify(site, p[1]);
-      tip.textContent = `${fmtWhen.format(new Date(p[0]))} · ${fmtCfs(p[1])} cfs · ${c.label}`;
+      const tp = tw.length > 1 ? nearest(tw, p[0]) : null;
+      const tempTxt = tp && Math.abs(tp[0] - p[0]) < 90 * 60e3 ? ` · ${fmtTemp(tp[1])}` : "";
+      tip.textContent = `${fmtWhen.format(new Date(p[0]))} · ${fmtCfs(p[1])} cfs · ${c.label}${tempTxt}`;
       tip.hidden = false;
-      tip.style.left = `${Math.min(Math.max(px, 90), W - 90)}px`;
+      tip.style.left = `${Math.min(Math.max(px, 120), W - 120)}px`;
     });
     hit.addEventListener("pointerleave", () => { cursor.setAttribute("visibility", "hidden"); tip.hidden = true; });
     svg.append(hit);
