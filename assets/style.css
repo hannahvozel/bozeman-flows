@@ -10,7 +10,8 @@
   --rust: #2e6b6f;       
   --rust-ink: #25585c;
   --pine: #2a4441;      
-  --river: #2d6f9a;       
+  --river: #2d6f9a;  
+  --temp: #b07a3a;      
   --shadow: 0 1px 0 rgba(30, 42, 41, .06), 0 6px 18px -10px rgba(30, 42, 41, .35);
 
   /* Level colors: river rock -> moss -> river green -> current blue -> storm blue -> silty flood */
@@ -41,6 +42,7 @@
     --rust-ink: #86c2b8;
     --pine: #a7c4b6;
     --river: #7ab4d8;
+    --temp: #d9a866;
     --shadow: 0 6px 18px -10px rgba(0, 0, 0, .7);
     --lv-too_low: #6c777a;
     --lv-medium: #2f7d64;
@@ -224,6 +226,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 16px 2rem; }
 .facts dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
 .trend.rising { color: var(--rust-ink); }
 .trend.falling { color: var(--river); }
+.facts .temp { color: var(--temp); }
 
 /* band ladder: one equal-width segment per band; pin interpolates within its band */
 .ladder { position: relative; height: 22px; margin: .6rem 0 .2rem; }
