@@ -15,7 +15,7 @@
   --shadow: 0 1px 0 rgba(30, 42, 41, .06), 0 6px 18px -10px rgba(30, 42, 41, .35);
 
   /* Level colors: river rock -> moss -> river green -> current blue -> storm blue -> silty flood */
-  --lv-too_low: #7a8588;
+  --lv-very_low: #7a8588;
   --lv-low: #7b8a45;
   --lv-medium: #2f7d64;
   --lv-high: #2a6a8f;
@@ -44,7 +44,7 @@
     --river: #7ab4d8;
     --temp: #d9a866;
     --shadow: 0 6px 18px -10px rgba(0, 0, 0, .7);
-    --lv-too_low: #6c777a;
+    --lv-very_low: #6c777a;
     --lv-medium: #2f7d64;
     --on-accent: #0f1817;
     color-scheme: dark;
@@ -143,7 +143,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 16px 2rem; }
   cursor: pointer;
   display: inline-flex; align-items: center; gap: .45rem;
 }
-.chip .dot { width: .7rem; height: .7rem; border-radius: 50%; background: var(--lv-too_low); flex: none; }
+.chip .dot { width: .7rem; height: .7rem; border-radius: 50%; background: var(--lv-very_low); flex: none; }
 .chip[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
 .chip:focus-visible, .segmented button:focus-visible, .btn:focus-visible, .glance-item:focus-visible {
   outline: 3px solid var(--river); outline-offset: 2px;
@@ -170,7 +170,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 16px 2rem; }
   font: inherit; color: inherit;
   background: var(--paper);
   border: 1px solid var(--line);
-  border-left: 6px solid var(--lv-too_low);
+  border-left: 6px solid var(--lv-very_low);
   border-radius: 10px;
   padding: .6rem .8rem;
   cursor: pointer;
@@ -214,7 +214,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 16px 2rem; }
   padding: .3rem .7rem;
   border-radius: 6px;
   color: var(--lv-text);
-  background: var(--lv-too_low);
+  background: var(--lv-very_low);
   white-space: nowrap;
 }
 .readout { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .4rem 1rem; margin: .7rem 0 .4rem; }
