@@ -1,47 +1,50 @@
-/* Bozeman Flow Report — earthy, western, readable. */
+/* Bozeman Flow Report - earthy, of the river. */
 :root {
-  --bg: #efe4cf;
-  --paper: #f8f1e3;
-  --paper-2: #ece0c7;
-  --ink: #2b2118;
-  --muted: #6d5b47;
-  --line: #cfba95;
-  --rust: #a4492a;
-  --rust-ink: #8a3a20;
-  --pine: #34473a;
-  --river: #3d6670;
-  --shadow: 0 1px 0 rgba(43, 33, 24, .06), 0 6px 18px -10px rgba(43, 33, 24, .35);
+  /* Light theme */
+  --bg: #e8ece8;
+  --paper: #f5f7f3;
+  --paper-2: #dde5df;
+  --ink: #1e2a29;
+  --muted: #5a6966;
+  --line: #c2cdc7;
+  --rust: #2e6b6f;       
+  --rust-ink: #25585c;
+  --pine: #2a4441;      
+  --river: #2d6f9a;       
+  --shadow: 0 1px 0 rgba(30, 42, 41, .06), 0 6px 18px -10px rgba(30, 42, 41, .35);
 
-  /* Level colors: dry stone -> ochre -> sage -> rust -> oxblood -> deep red-brown */
-  --lv-too_low: #9c9283;
-  --lv-low: #c4923a;
-  --lv-medium: #6f8a55;
-  --lv-high: #b65a2e;
-  --lv-very_high: #8c2f1c;
-  --lv-flood: #561a12;
-  --lv-text: #fffaf0;
+  /* Level colors: river rock -> moss -> river green -> current blue -> storm blue -> silty flood */
+  --lv-too_low: #7a8588;
+  --lv-low: #7b8a45;
+  --lv-medium: #2f7d64;
+  --lv-high: #2a6a8f;
+  --lv-very_high: #23446b;
+  --lv-flood: #6a4b33;
+  --lv-text: #ffffff;
+  --on-accent: #ffffff; 
 
-  --display: "Rye", "Rockwell", "Georgia", serif;
-  --body: "Bitter", "Rockwell", "Georgia", serif;
+  --display: "Comfortaa", "Nunito", system-ui, sans-serif;  
+  --body: "Nunito", system-ui, sans-serif; 
   color-scheme: light;
 }
 
-/* Campfire-at-night dark theme */
+/* River-at-night dark theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1c1712;
-    --paper: #26201a;
-    --paper-2: #2f281f;
-    --ink: #f0e5cf;
-    --muted: #b8a78e;
-    --line: #4a3e30;
-    --rust: #d0734a;
-    --rust-ink: #e08a62;
-    --pine: #a9bd9a;
-    --river: #7fb0b8;
+    --bg: #111a19;
+    --paper: #182221;
+    --paper-2: #202d2b;
+    --ink: #e2eae6;
+    --muted: #9caea9;
+    --line: #32433f;
+    --rust: #6fb0a6;
+    --rust-ink: #86c2b8;
+    --pine: #a7c4b6;
+    --river: #7ab4d8;
     --shadow: 0 6px 18px -10px rgba(0, 0, 0, .7);
-    --lv-too_low: #7d7568;
-    --lv-medium: #6f8a55;
+    --lv-too_low: #6c777a;
+    --lv-medium: #2f7d64;
+    --on-accent: #0f1817;
     color-scheme: dark;
   }
 }
@@ -51,7 +54,7 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 20% 0%, rgba(164, 73, 42, .07), transparent 40%),
+    radial-gradient(circle at 20% 0%, rgba(45, 111, 154, .08), transparent 40%),
     var(--bg);
   color: var(--ink);
   font: 16px/1.5 var(--body);
@@ -62,12 +65,12 @@ code { font-size: .9em; background: var(--paper-2); padding: .05em .35em; border
 /* ---------- masthead ---------- */
 .masthead {
   background: var(--pine);
-  color: #f3ead8;
+  color: #eef3ef;
   position: relative;
   padding: 2.4rem 16px 4.5rem;
   text-align: center;
 }
-@media (prefers-color-scheme: dark) { .masthead { background: #222c22; } }
+@media (prefers-color-scheme: dark) { .masthead { background: #172523; } }
 .masthead-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
 .eyebrow {
   margin: 0 0 .4rem;
@@ -87,7 +90,7 @@ code { font-size: .9em; background: var(--paper-2); padding: .05em .35em; border
   font-size: .4em;
   vertical-align: middle;
   margin: 0 .6em;
-  color: #e0a875;
+  color: #9fd3c7;
 }
 .tagline { margin: .8rem auto 0; max-width: 34rem; opacity: .9; }
 .ridgeline {
@@ -121,7 +124,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 16px 2rem; }
 .status.warn { color: var(--rust-ink); }
 .btn {
   font: 600 .9rem var(--body);
-  background: var(--rust); color: #fffaf0;
+  background: var(--rust); color: var(--on-accent);
   border: 0; border-radius: 999px; padding: .45rem 1rem; cursor: pointer;
 }
 .btn:hover { filter: brightness(1.08); }
