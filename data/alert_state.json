@@ -7,17 +7,17 @@
     },
     "gallatin-canyon-big": {
       "active": false,
-      "last_cfs": 345.0,
+      "last_cfs": 340.0,
       "since": "2026-11-11T14:26:12+00:00"
     },
     "gallatin-canyon-in": {
       "active": false,
-      "last_cfs": 345.0,
+      "last_cfs": 340.0,
       "since": "2026-11-11T14:26:12+00:00"
     },
     "stillwater-dropping-out": {
       "active": true,
-      "last_cfs": 404.0,
+      "last_cfs": 398.0,
       "since": "2026-11-11T14:26:12+00:00"
     },
     "yankee-jim-running": {
