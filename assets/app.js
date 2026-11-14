@@ -17,7 +17,7 @@
     sites: {},          // usgs -> {site, river}
     mode: "compare",
     selected: [],
-    latest: {},         // usgs -> {cfs, gage_ft, time, approval}
+    latest: {},         // usgs -> {cfs, time, approval}
     series: {},         // usgs -> [[ms, cfs], ...]
     source: null,       // "live" | "snapshot"
     snapshot: null,
@@ -66,19 +66,17 @@
   async function fetchLiveLatest(ids) {
     const feats = await fetchItems("latest-continuous", {
       monitoring_location_id: ids.map((i) => `USGS-${i}`).join(","),
-      parameter_code: "00060,00065",
+      parameter_code: "00060",
       limit: "1000",
     });
     const out = {};
     for (const f of feats) {
       const p = f.properties, id = siteOf(f);
-      const rec = (out[id] ||= { cfs: null, gage_ft: null, time: null, approval: null });
+      const rec = (out[id] ||= { cfs: null, time: null, approval: null });
       const t = Date.parse(p.time);
       if (p.parameter_code === "00060" && (!rec.time || t > Date.parse(rec.time))) {
         Object.assign(rec, { cfs: num(p.value), time: p.time, approval: p.approval_status });
-      } else if (p.parameter_code === "00065") {
-        rec.gage_ft = num(p.value);
-      }
+      } 
     }
     if (!Object.values(out).some((r) => r.cfs != null)) throw new Error("no discharge readings returned");
     return out;
@@ -109,7 +107,7 @@
   function useSnapshotLatest(snap) {
     state.latest = {};
     for (const [id, s] of Object.entries(snap.sites || {})) {
-      state.latest[id] = { cfs: s.cfs, gage_ft: s.gage_ft, time: s.time, approval: s.approval };
+      state.latest[id] = { cfs: s.cfs, time: s.time, approval: s.approval };
     }
   }
 
@@ -341,7 +339,6 @@
     $(".site-name", card).textContent = `${river.name} ${site.name}`;
     $(".site-run", card).textContent = site.run;
     $(".cfs-num", card).textContent = fmtCfs(r.cfs);
-    $(".stage", card).textContent = r.gage_ft == null ? "–" : `${r.gage_ft.toFixed(2)} ft`;
     const badge = $(".badge", card);
     if (c) {
       badge.textContent = c.label;
