@@ -2,7 +2,7 @@ name: Refresh flows & send alerts
 
 on:
   schedule:
-    - cron: "17 * * * *"   # hourly, off the top of the hour (GitHub may delay scheduled runs)
+    - cron: "29 */3 * * *"   # every 3 hours at 29 min
   workflow_dispatch:
     inputs:
       dry_run:
