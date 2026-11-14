@@ -19,6 +19,7 @@ from typing import Any, Iterable, Iterator
 BASE_URL = os.environ.get("USGS_API_BASE", "https://api.waterdata.usgs.gov/ogcapi/v1")
 DISCHARGE = "00060"   # cubic feet per second
 GAGE_HEIGHT = "00065"  # feet
+WATER_TEMP = "00010" # water temp celsius
 USER_AGENT = "bozeman-flows/1.0 (+https://github.com/hannahvozel/bozeman-flows)"
 
 """Create new class that inherits from RuntimeError."""
@@ -88,7 +89,7 @@ class USGSClient:
 
     # -- public --------------------------------------------------------------
     def latest(self, usgs_ids: Iterable[str],
-               parameter_codes: Iterable[str] = (DISCHARGE, GAGE_HEIGHT)) -> dict[str, dict[str, Any]]:
+               parameter_codes: Iterable[str] = (DISCHARGE, GAGE_HEIGHT, WATER_TEMP)) -> dict[str, dict[str, Any]]:
         """Most recent reading per site and parameter.
 
         Returns {"06043500": {"00060": {"value": 512.0, "time": "...", "approval": "Provisional"}, ...}}

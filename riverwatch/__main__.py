@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 from . import alerts, config, snapshot
-from .usgs import USGSClient, USGSError
+from .usgs import USGSClient, USGSError, WATER_TEMP
 
 ROOT = config.REPO_ROOT
 
@@ -38,8 +38,13 @@ def main(argv: list[str] | None = None) -> int:
     except USGSError as err:
         print(f"error: {err}", file=sys.stderr)
         return 1
+    try:  # water temperature is a bonus; don't fail the run without it
+        temps = client.series(ids, period=args.period, parameter_code=WATER_TEMP)
+    except USGSError as err:
+        print(f"warning: no water temperature: {err}", file=sys.stderr)
+        temps = {}
 
-    snap = snapshot.build(cfg, latest, series)
+    snap = snapshot.build(cfg, latest, series, temps)
     args.snapshot.parent.mkdir(parents=True, exist_ok=True)
     args.snapshot.write_text(json.dumps(snap, separators=(",", ":")))
 
