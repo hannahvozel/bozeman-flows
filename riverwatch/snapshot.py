@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from .config import RiverConfig
-from .usgs import DISCHARGE, GAGE_HEIGHT, parse_time
+from .usgs import DISCHARGE, GAGE_HEIGHT, WATER_TEMP, parse_time
 
 STEADY_PCT = 5.0  # +/- change over 24h that still counts as "steady"
 
@@ -35,21 +35,25 @@ def trend_24h(points: list[tuple[str, float]], hours: float = 24) -> dict[str, A
 
 
 def build(cfg: RiverConfig, latest: dict[str, dict[str, Any]],
-          series: dict[str, list[tuple[str, float]]]) -> dict[str, Any]:
+          series: dict[str, list[tuple[str, float]]], temp_series=None) -> dict[str, Any]:
     sites: dict[str, Any] = {}
+    temp_series = temp_series or {}
     for usgs in cfg.sites:
         reading = latest.get(usgs, {})
         q = reading.get(DISCHARGE) or {}
         gh = reading.get(GAGE_HEIGHT) or {}
+        wt = reading.get(WATER_TEMP) or {}
         pts = series.get(usgs, [])
         cfs = q.get("value")
         sites[usgs] = {
             "cfs": cfs,
+            "temp_c": wt.get("value"),
             "time": q.get("time"),
             "approval": q.get("approval"),
             "classification": cfg.classify(usgs, cfs),
             "trend_24h": trend_24h(pts),
             "series": downsample_hourly(pts),
+            "temp_series": downsample_hourly(temp_series.get(usgs, [])),
         }
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
