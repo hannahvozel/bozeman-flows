@@ -47,7 +47,6 @@ def build(cfg: RiverConfig, latest: dict[str, dict[str, Any]],
         cfs = q.get("value")
         sites[usgs] = {
             "cfs": cfs,
-            "gage_ft": gh.get("value"),
             "temp_c": wt.get("value"),
             "time": q.get("time"),
             "approval": q.get("approval"),

@@ -19,12 +19,12 @@
           "name": "near Gallatin Gateway",
           "run": "Gallatin Canyon: Lower",
           "bands": [
-            { "max": 300,  "level": "very_low",   "class": "TBD",     "note": "Estimate only." },
-            { "max": 700,  "level": "low",       "class": "TBD", "note": "Estimate only." },
-            { "max": 1500, "level": "medium",    "class": "TBD",    "note": "Estimate only." },
-            { "max": 3000, "level": "high",      "class": "TBD", "note": "Estimate only." },
-            { "max": 5000, "level": "very_high", "class": "TBD",     "note": "Estimate only." },
-            { "max": null, "level": "flood",     "class": "TBD",  "note": "Estimate only." }
+            { "max": 300,  "level": "very_low",   "class": "TBD",     "note": "" },
+            { "max": 700,  "level": "low",       "class": "TBD", "note": "" },
+            { "max": 1500, "level": "medium",    "class": "TBD",    "note": "" },
+            { "max": 3000, "level": "high",      "class": "TBD", "note": "" },
+            { "max": 5000, "level": "very_high", "class": "TBD",     "note": "" },
+            { "max": null, "level": "flood",     "class": "TBD",  "note": "" }
           ]
         },
         {
@@ -32,12 +32,12 @@
           "name": "above Deer Creek, near Big Sky",
           "run": "Gallatin Canyon: Upper",
           "bands": [
-            { "max": 200,  "level": "very_low",   "class": "TBD",     "note": "Estimate only." },
-            { "max": 450,  "level": "low",       "class": "TBD",    "note": "Estimate only." },
-            { "max": 1000, "level": "medium",    "class": "TBD",   "note": "Estimate only." },
-            { "max": 2000, "level": "high",      "class": "TBD",    "note": "Estimate only." },
-            { "max": 3500, "level": "very_high", "class": "TBD", "note": "Estimate only." },
-            { "max": null, "level": "flood",     "class": "TBD",    "note": "Estimate only." }
+            { "max": 200,  "level": "very_low",   "class": "TBD",     "note": "" },
+            { "max": 450,  "level": "low",       "class": "TBD",    "note": "" },
+            { "max": 1000, "level": "medium",    "class": "TBD",   "note": "" },
+            { "max": 2000, "level": "high",      "class": "TBD",    "note": "" },
+            { "max": 3500, "level": "very_high", "class": "TBD", "note": "" },
+            { "max": null, "level": "flood",     "class": "TBD",    "note": "" }
           ]
         }
       ]
@@ -52,12 +52,12 @@
           "name": "below Ennis Lake, near McAllister",
           "run": "Bear Trap Canyon: Madison Dam to Route 84",
           "bands": [
-            { "max": 800,  "level": "very_low",   "class": "TBD", "note": "Estimate only." },
-            { "max": 1500, "level": "low",       "class": "TBD",    "note": "Estimate only." },
-            { "max": 2500, "level": "medium",    "class": "TBD",    "note": "Estimate only." },
-            { "max": 3200, "level": "high",      "class": "TBD",   "note": "Estimate only." },
-            { "max": 5000, "level": "very_high", "class": "TBD",     "note": "Estimate only." },
-            { "max": null, "level": "flood",     "class": "TBD",  "note": "Estimate only." }
+            { "max": 800,  "level": "very_low",   "class": "TBD", "note": "" },
+            { "max": 1500, "level": "low",       "class": "TBD",    "note": "" },
+            { "max": 2500, "level": "medium",    "class": "TBD",    "note": "" },
+            { "max": 3200, "level": "high",      "class": "TBD",   "note": "" },
+            { "max": 5000, "level": "very_high", "class": "TBD",     "note": "" },
+            { "max": null, "level": "flood",     "class": "TBD",  "note": "" }
           ]
         }
       ]
@@ -72,12 +72,12 @@
           "name": "at Corwin Springs",
           "run": "Yankee Jim Canyon: Yankee Jim to Carbella",
           "bands": [
-            { "max": 2000,  "level": "very_low",   "class": "TBD",   "note": "Estimate only." },
-            { "max": 5000,  "level": "low",       "class": "TBD",  "note": "Estimate only." },
-            { "max": 10000, "level": "medium",    "class": "TBD",   "note": "Estimate only." },
-            { "max": 15000, "level": "high",      "class": "TBD", "note": "Estimate only." },
-            { "max": 30000, "level": "very_high", "class": "TBD",    "note": "Estimate only." },
-            { "max": null,  "level": "flood",     "class": "TBD",   "note": "Estimate only." }
+            { "max": 2000,  "level": "very_low",   "class": "TBD",   "note": "" },
+            { "max": 5000,  "level": "low",       "class": "TBD",  "note": "" },
+            { "max": 10000, "level": "medium",    "class": "TBD",   "note": "" },
+            { "max": 15000, "level": "high",      "class": "TBD", "note": "" },
+            { "max": 30000, "level": "very_high", "class": "TBD",    "note": "" },
+            { "max": null,  "level": "flood",     "class": "TBD",   "note": "" }
           ]
         },
         {
@@ -85,12 +85,12 @@
           "name": "near Livingston",
           "run": "Paradise Valley and Livingston town stretch",
           "bands": [
-            { "max": 1500,  "level": "very_low",   "class": "TBD",    "note": "Estimate only." },
-            { "max": 4000,  "level": "low",       "class": "TBD",    "note": "Estimate only." },
-            { "max": 10000, "level": "medium",    "class": "TBD", "note": "Estimate only." },
-            { "max": 18000, "level": "high",      "class": "TBD",   "note": "Estimate only." },
-            { "max": 28000, "level": "very_high", "class": "TBD",  "note": "Estimate only." },
-            { "max": null,  "level": "flood",     "class": "TBD",  "note": "Estimate only." }
+            { "max": 1500,  "level": "very_low",   "class": "TBD",    "note": "" },
+            { "max": 4000,  "level": "low",       "class": "TBD",    "note": "" },
+            { "max": 10000, "level": "medium",    "class": "TBD", "note": "" },
+            { "max": 18000, "level": "high",      "class": "TBD",   "note": "" },
+            { "max": 28000, "level": "very_high", "class": "TBD",  "note": "" },
+            { "max": null,  "level": "flood",     "class": "TBD",  "note": "" }
           ]
         }
       ]
@@ -105,12 +105,12 @@
           "name": "near Absarokee",
           "run": "Lower Stillwater: Beehive to Absarokee",
           "bands": [
-            { "max": 500,  "level": "very_low",   "class": "TBD",  "note": "Estimate only." },
-            { "max": 1000, "level": "low",       "class": "TBD",   "note": "Estimate only." },
-            { "max": 2500, "level": "medium",    "class": "TBD", "note": "Estimate only." },
-            { "max": 4500, "level": "high",      "class": "TBD",  "note": "Estimate only." },
-            { "max": 7000, "level": "very_high", "class": "TBD", "note": "Estimate only." },
-            { "max": null, "level": "flood",     "class": "TBD",   "note": "Estimate only." }
+            { "max": 500,  "level": "very_low",   "class": "TBD",  "note": "" },
+            { "max": 1000, "level": "low",       "class": "TBD",   "note": "" },
+            { "max": 2500, "level": "medium",    "class": "TBD", "note": "" },
+            { "max": 4500, "level": "high",      "class": "TBD",  "note": "" },
+            { "max": 7000, "level": "very_high", "class": "TBD", "note": "" },
+            { "max": null, "level": "flood",     "class": "TBD",   "note": "" }
           ]
         }
       ]
@@ -125,12 +125,12 @@
           "name": "at Big Timber",
           "run": "Speculator Creek to Chippy Park",
           "bands": [
-            { "max": 1500, "level": "very_low",   "class": "TBD",  "note": "Estimate only." },
-            { "max": 3000, "level": "low",       "class": "TBD",  "note": "Estimate only." },
-            { "max": 4500, "level": "medium",    "class": "TBD", "note": "Estimate only." },
-            { "max": 5500, "level": "high",      "class": "TBD",  "note": "Estimate only." },
-            { "max": 7000, "level": "very_high", "class": "TBD",   "note": "Estimate only." },
-            { "max": null, "level": "flood",     "class": "TBD",  "note": "Estimate only." }
+            { "max": 1500, "level": "very_low",   "class": "TBD",  "note": "" },
+            { "max": 3000, "level": "low",       "class": "TBD",  "note": "" },
+            { "max": 4500, "level": "medium",    "class": "TBD", "note": "" },
+            { "max": 5500, "level": "high",      "class": "TBD",  "note": "" },
+            { "max": 7000, "level": "very_high", "class": "TBD",   "note": "" },
+            { "max": null, "level": "flood",     "class": "TBD",  "note": "" }
           ]
         }
       ]
