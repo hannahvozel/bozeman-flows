@@ -2,27 +2,27 @@
   "rules": {
     "beartrap-too-high": {
       "active": false,
-      "last_cfs": 1360.0,
+      "last_cfs": 1370.0,
       "since": "2026-11-11T14:26:12+00:00"
     },
     "gallatin-canyon-big": {
       "active": false,
-      "last_cfs": 345.0,
+      "last_cfs": 306.0,
       "since": "2026-11-11T14:26:12+00:00"
     },
     "gallatin-canyon-in": {
       "active": false,
-      "last_cfs": 345.0,
+      "last_cfs": 306.0,
       "since": "2026-11-11T14:26:12+00:00"
     },
     "stillwater-dropping-out": {
       "active": true,
-      "last_cfs": 383.0,
+      "last_cfs": 373.0,
       "since": "2026-11-11T14:26:12+00:00"
     },
     "yankee-jim-running": {
       "active": false,
-      "last_cfs": 986.0,
+      "last_cfs": 970.0,
       "since": "2026-11-11T14:26:12+00:00"
     }
   }
