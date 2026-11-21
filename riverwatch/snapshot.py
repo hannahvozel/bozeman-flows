@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from .config import RiverConfig
-from .usgs import DISCHARGE, GAGE_HEIGHT, WATER_TEMP, parse_time
+from .usgs import DISCHARGE, WATER_TEMP, parse_time
 
 STEADY_PCT = 5.0  # +/- change over 24h that still counts as "steady"
 
@@ -41,7 +41,6 @@ def build(cfg: RiverConfig, latest: dict[str, dict[str, Any]],
     for usgs in cfg.sites:
         reading = latest.get(usgs, {})
         q = reading.get(DISCHARGE) or {}
-        gh = reading.get(GAGE_HEIGHT) or {}
         wt = reading.get(WATER_TEMP) or {}
         pts = series.get(usgs, [])
         cfs = q.get("value")
