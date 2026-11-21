@@ -18,7 +18,6 @@ from typing import Any, Iterable, Iterator
 
 BASE_URL = os.environ.get("USGS_API_BASE", "https://api.waterdata.usgs.gov/ogcapi/v1")
 DISCHARGE = "00060"   # cubic feet per second
-GAGE_HEIGHT = "00065"  # feet
 WATER_TEMP = "00010" # water temp celsius
 USER_AGENT = "bozeman-flows/1.0 (+https://github.com/hannahvozel/bozeman-flows)"
 
