@@ -88,7 +88,7 @@ class USGSClient:
 
     # -- public --------------------------------------------------------------
     def latest(self, usgs_ids: Iterable[str],
-               parameter_codes: Iterable[str] = (DISCHARGE, GAGE_HEIGHT, WATER_TEMP)) -> dict[str, dict[str, Any]]:
+               parameter_codes: Iterable[str] = (DISCHARGE, WATER_TEMP)) -> dict[str, dict[str, Any]]:
         """Most recent reading per site and parameter.
 
         Returns {"06043500": {"00060": {"value": 512.0, "time": "...", "approval": "Provisional"}, ...}}
