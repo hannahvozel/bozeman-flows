@@ -2,7 +2,7 @@
   "rules": {
     "beartrap-too-high": {
       "active": false,
-      "last_cfs": 1190.0,
+      "last_cfs": 1200.0,
       "since": "2026-11-11T14:26:12+00:00"
     },
     "gallatin-canyon-big": {
@@ -17,7 +17,7 @@
     },
     "stillwater-dropping-out": {
       "active": true,
-      "last_cfs": 364.0,
+      "last_cfs": 349.0,
       "since": "2026-11-11T14:26:12+00:00"
     },
     "yankee-jim-running": {
